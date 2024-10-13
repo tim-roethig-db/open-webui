@@ -2413,13 +2413,13 @@ async def healthcheck_with_db():
     return {"status": True}
 
 
-app.mount(f"{BASE_PATH}/static", StaticFiles(directory=STATIC_DIR), name="static")
-app.mount(f"{BASE_PATH}/cache", StaticFiles(directory=CACHE_DIR), name="cache")
+app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+app.mount("/cache", StaticFiles(directory=CACHE_DIR), name="cache")
 
 if os.path.exists(FRONTEND_BUILD_DIR):
     mimetypes.add_type("text/javascript", ".js")
     app.mount(
-        BASE_PATH,
+        "/",
         SPAStaticFiles(directory=FRONTEND_BUILD_DIR, html=True),
         name="spa-static-files",
     )
