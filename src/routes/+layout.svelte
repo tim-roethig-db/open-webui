@@ -193,9 +193,11 @@
 			window.removeEventListener('resize', onResize);
 		};
 	});
+  import { base } from '$app/paths';
 </script>
 
 <svelte:head>
+  	<base href="{base}/">
 	<title>{$WEBUI_NAME}</title>
 	<link crossorigin="anonymous" rel="icon" href="{WEBUI_BASE_URL}/static/favicon.png" />
 
