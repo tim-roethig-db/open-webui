@@ -203,9 +203,10 @@ async def lifespan(app: FastAPI):
     asyncio.create_task(periodic_usage_pool_cleanup())
     yield
 
+BASE_PATH = os.getenv("BASE_PATH", "").rstrip("/")
 
 app = FastAPI(
-    docs_url="/docs" if ENV == "dev" else None, redoc_url=None, lifespan=lifespan
+    docs_url="/docs" if ENV == "dev" else None, redoc_url=None, lifespan=lifespan, root_path=BASE_PATH
 )
 
 app.state.config = AppConfig()
@@ -2412,13 +2413,13 @@ async def healthcheck_with_db():
     return {"status": True}
 
 
-app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
-app.mount("/cache", StaticFiles(directory=CACHE_DIR), name="cache")
+app.mount(f"{BASE_PATH}/static", StaticFiles(directory=STATIC_DIR), name="static")
+app.mount(f"{BASE_PATH}/cache", StaticFiles(directory=CACHE_DIR), name="cache")
 
 if os.path.exists(FRONTEND_BUILD_DIR):
     mimetypes.add_type("text/javascript", ".js")
     app.mount(
-        "/",
+        BASE_PATH,
         SPAStaticFiles(directory=FRONTEND_BUILD_DIR, html=True),
         name="spa-static-files",
     )

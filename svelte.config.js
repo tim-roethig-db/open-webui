@@ -16,7 +16,7 @@ const config = {
 			fallback: 'index.html'
 		}),
 		paths: {
-			base: '/test123',
+			base: '/test123'
 		},
 	},
 	onwarn: (warning, handler) => {
