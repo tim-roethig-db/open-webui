@@ -901,6 +901,9 @@ CHROMA_HTTP_SSL = os.environ.get("CHROMA_HTTP_SSL", "false").lower() == "true"
 
 MILVUS_URI = os.environ.get("MILVUS_URI", f"{DATA_DIR}/vector_db/milvus.db")
 
+# Qdrant
+QDRANT_URI = os.environ.get("QDRANT_URI", None)
+
 ####################################
 # Information Retrieval (RAG)
 ####################################
@@ -1010,6 +1013,22 @@ RAG_RERANKING_MODEL_AUTO_UPDATE = (
 RAG_RERANKING_MODEL_TRUST_REMOTE_CODE = (
     os.environ.get("RAG_RERANKING_MODEL_TRUST_REMOTE_CODE", "").lower() == "true"
 )
+
+
+RAG_TEXT_SPLITTER = PersistentConfig(
+    "RAG_TEXT_SPLITTER",
+    "rag.text_splitter",
+    os.environ.get("RAG_TEXT_SPLITTER", ""),
+)
+
+
+TIKTOKEN_CACHE_DIR = os.environ.get("TIKTOKEN_CACHE_DIR", f"{CACHE_DIR}/tiktoken")
+TIKTOKEN_ENCODING_NAME = PersistentConfig(
+    "TIKTOKEN_ENCODING_NAME",
+    "rag.tiktoken_encoding_name",
+    os.environ.get("TIKTOKEN_ENCODING_NAME", "cl100k_base"),
+)
+
 
 CHUNK_SIZE = PersistentConfig(
     "CHUNK_SIZE", "rag.chunk_size", int(os.environ.get("CHUNK_SIZE", "1000"))

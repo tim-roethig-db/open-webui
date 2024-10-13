@@ -78,6 +78,7 @@
 	let loaded = false;
 	const eventTarget = new EventTarget();
 	let controlPane;
+	let controlPaneComponent;
 
 	let stopResponseFlag = false;
 	let autoScroll = true;
@@ -290,14 +291,9 @@
 			if (controlPane && !$mobile) {
 				try {
 					if (value) {
-						const currentSize = controlPane.getSize();
-
-						if (currentSize === 0) {
-							const size = parseInt(localStorage?.chatControlsSize ?? '30');
-							controlPane.resize(size ? size : 30);
-						}
+						controlPaneComponent.openPane();
 					} else {
-						controlPane.resize(0);
+						controlPane.collapse();
 					}
 				} catch (e) {
 					// ignore
@@ -307,6 +303,7 @@
 			if (!value) {
 				showCallOverlay.set(false);
 				showOverview.set(false);
+				showArtifacts.set(false);
 			}
 		});
 
@@ -427,7 +424,11 @@
 			console.log($config?.default_models.split(',') ?? '');
 			selectedModels = $config?.default_models.split(',');
 		} else {
-			selectedModels = [''];
+			if ($models.length > 0) {
+				selectedModels = [$models[0].id];
+			} else {
+				selectedModels = [''];
+			}
 		}
 
 		if ($page.url.searchParams.get('youtube')) {
@@ -2218,6 +2219,7 @@
 			</Pane>
 
 			<ChatControls
+				bind:this={controlPaneComponent}
 				bind:history
 				bind:chatFiles
 				bind:params
