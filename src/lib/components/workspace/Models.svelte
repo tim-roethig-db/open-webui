@@ -322,7 +322,7 @@
 	<div>
 		<a
 			class=" px-2 py-2 rounded-xl border border-gray-200 dark:border-gray-600 dark:border-0 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 transition font-medium text-sm flex items-center space-x-1"
-			href="/workspace/models/create"
+			href="workspace/models/create"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -339,7 +339,7 @@
 </div>
 <hr class=" dark:border-gray-850 my-2.5" />
 
-<a class=" flex space-x-4 cursor-pointer w-full mb-2 px-3 py-2" href="/workspace/models/create">
+<a class=" flex space-x-4 cursor-pointer w-full mb-2 px-3 py-2" href="workspace/models/create">
 	<div class=" self-center w-10 flex-shrink-0">
 		<div
 			class="w-full h-10 flex justify-center rounded-full bg-transparent dark:bg-gray-700 border border-dashed border-gray-200"
