@@ -148,7 +148,8 @@ log.setLevel(SRC_LOG_LEVELS["MAIN"])
 class SPAStaticFiles(StaticFiles):
     async def get_response(self, path: str, scope):
         try:
-            return await super().get_response(path, scope)
+            print(f"{path=}")
+            return await super().get_response(path.removeprefix(BASE_URL), scope)
         except (HTTPException, StarletteHTTPException) as ex:
             if ex.status_code == 404:
                 return await super().get_response("index.html", scope)
@@ -181,9 +182,15 @@ async def lifespan(app: FastAPI):
     asyncio.create_task(periodic_usage_pool_cleanup())
     yield
 
+# Get base URL from environment variable
+BASE_URL = os.getenv("BASE_URL", "").strip("/")
 
 app = FastAPI(
-    docs_url="/docs" if ENV == "dev" else None, openapi_url="/openapi.json" if ENV == "dev" else None, redoc_url=None, lifespan=lifespan
+    docs_url="/docs" if ENV == "dev" else None,
+    openapi_url="/openapi.json" if ENV == "dev" else None,
+    redoc_url=None,
+    lifespan=lifespan,
+    root_path=f"/{BASE_URL}" if BASE_URL else ""
 )
 
 app.state.config = AppConfig()
@@ -903,9 +910,14 @@ async def inspect_websocket(request: Request, call_next):
     return await call_next(request)
 
 
-app.mount("/ws", socket_app)
-app.mount("/ollama", ollama_app)
-app.mount("/openai", openai_app)
+# Mount API routes with base URL consideration
+app.mount(f"/{BASE_URL}/ws" if BASE_URL else "/ws", socket_app)
+app.mount(f"/{BASE_URL}/ollama" if BASE_URL else "/ollama", ollama_app)
+app.mount(f"/{BASE_URL}/openai" if BASE_URL else "/openai", openai_app)
+app.mount(f"/{BASE_URL}/images/api/v1" if BASE_URL else "/images/api/v1", images_app)
+app.mount(f"/{BASE_URL}/audio/api/v1" if BASE_URL else "/audio/api/v1", audio_app)
+app.mount(f"/{BASE_URL}/retrieval/api/v1" if BASE_URL else "/retrieval/api/v1", retrieval_app)
+app.mount(f"/{BASE_URL}/api/v1" if BASE_URL else "/api/v1", webui_app)
 
 app.mount("/images/api/v1", images_app)
 app.mount("/audio/api/v1", audio_app)
@@ -2462,15 +2474,14 @@ async def healthcheck_with_db():
     Session.execute(text("SELECT 1;")).all()
     return {"status": True}
 
-
-app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
-app.mount("/cache", StaticFiles(directory=CACHE_DIR), name="cache")
+app.mount(f"/{BASE_URL}/static", StaticFiles(directory=STATIC_DIR), name="static")
+app.mount(f"/{BASE_URL}/cache", StaticFiles(directory=CACHE_DIR), name="cache")
 
 
 if os.path.exists(FRONTEND_BUILD_DIR):
     mimetypes.add_type("text/javascript", ".js")
     app.mount(
-        "/",
+        f"/",
         SPAStaticFiles(directory=FRONTEND_BUILD_DIR, html=True),
         name="spa-static-files",
     )
