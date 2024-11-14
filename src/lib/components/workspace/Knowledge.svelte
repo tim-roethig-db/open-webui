@@ -16,6 +16,7 @@
 	import { blobToFile, transformFileName } from '$lib/utils';
 
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 	import Tooltip from '../common/Tooltip.svelte';
 	import GarbageBin from '../icons/GarbageBin.svelte';
 	import Pencil from '../icons/Pencil.svelte';

@@ -17,6 +17,7 @@
 	import { getTools } from '$lib/apis/tools';
 	import { getFunctions } from '$lib/apis/functions';
 	import { getKnowledgeItems } from '$lib/apis/knowledge';
+	import { base } from '$app/paths';
 
 	const i18n = getContext('i18n');
 

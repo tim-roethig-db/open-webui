@@ -6,6 +6,7 @@
 	import { WEBUI_NAME, config, functions, models } from '$lib/stores';
 	import { onMount, getContext, tick } from 'svelte';
 	import { createNewPrompt, deletePromptByCommand, getPrompts } from '$lib/apis/prompts';
+	import { base } from '$app/paths';
 
 	import { goto } from '$app/navigation';
 	import {

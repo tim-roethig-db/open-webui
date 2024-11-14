@@ -6,6 +6,7 @@
 	import { onMount, getContext } from 'svelte';
 	import { WEBUI_NAME, config, prompts, tools } from '$lib/stores';
 	import { createNewPrompt, deletePromptByCommand, getPrompts } from '$lib/apis/prompts';
+	import { base } from '$app/paths';
 
 	import { goto } from '$app/navigation';
 	import {

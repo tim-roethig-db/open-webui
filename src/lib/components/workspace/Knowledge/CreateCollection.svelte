@@ -6,6 +6,7 @@
 	import { createNewKnowledge, getKnowledgeItems } from '$lib/apis/knowledge';
 	import { toast } from 'svelte-sonner';
 	import { knowledge } from '$lib/stores';
+	import { base } from '$app/paths';
 
 	let loading = false;
 

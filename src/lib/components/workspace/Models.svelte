@@ -14,6 +14,7 @@
 
 	import { deleteModel } from '$lib/apis/ollama';
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 
 	import { getModels } from '$lib/apis';
 

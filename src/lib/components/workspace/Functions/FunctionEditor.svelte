@@ -1,6 +1,7 @@
 <script>
 	import { getContext, createEventDispatcher, onMount, tick } from 'svelte';
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 
 	const dispatch = createEventDispatcher();
 	const i18n = getContext('i18n');

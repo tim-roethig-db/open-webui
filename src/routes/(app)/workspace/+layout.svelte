@@ -13,6 +13,7 @@
 	} from '$lib/stores';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 
 	import MenuLines from '$lib/components/icons/MenuLines.svelte';
 	import { getModels } from '$lib/apis';

@@ -12,6 +12,7 @@
 	import { getModels } from '$lib/apis';
 	import { compareVersion, extractFrontmatter } from '$lib/utils';
 	import { WEBUI_VERSION } from '$lib/constants';
+	import { base } from '$app/paths';
 
 	const i18n = getContext('i18n');
 

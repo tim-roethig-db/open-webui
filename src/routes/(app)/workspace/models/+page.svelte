@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { models } from '$lib/stores';
 	import { getModels } from '$lib/apis';
+	import { base } from '$app/paths';
 	import Models from '$lib/components/workspace/Models.svelte';
 
 	onMount(async () => {

@@ -25,6 +25,7 @@
 	import { transcribeAudio } from '$lib/apis/audio';
 	import { blobToFile } from '$lib/utils';
 	import { processFile } from '$lib/apis/retrieval';
+	import { base } from '$app/paths';
 
 	import Spinner from '$lib/components/common/Spinner.svelte';
 	import Files from './Collection/Files.svelte';

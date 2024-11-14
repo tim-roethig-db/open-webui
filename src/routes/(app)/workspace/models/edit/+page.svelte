@@ -11,6 +11,7 @@
 	import { updateModelById } from '$lib/apis/models';
 
 	import { getModels } from '$lib/apis';
+	import { base } from '$app/paths';
 	import ModelEditor from '$lib/components/workspace/Models/ModelEditor.svelte';
 
 	let model = null;
