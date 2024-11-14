@@ -2438,17 +2438,32 @@ async def healthcheck_with_db():
     return {"status": True}
 
 
-app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
-app.mount("/cache", StaticFiles(directory=CACHE_DIR), name="cache")
+base_url = os.getenv("BASE_URL", "").strip("/")
 
+# Mount static files
+app.mount(f"/{base_url}/static" if base_url else "/static", 
+         StaticFiles(directory=STATIC_DIR), 
+         name="static")
+app.mount(f"/{base_url}/cache" if base_url else "/cache", 
+         StaticFiles(directory=CACHE_DIR), 
+         name="cache")
 
+# Mount API endpoints with base URL
+if base_url:
+    app.mount(f"/{base_url}/ws", socket_app)
+    app.mount(f"/{base_url}/ollama", ollama_app)
+    app.mount(f"/{base_url}/openai", openai_app)
+    app.mount(f"/{base_url}/images/api/v1", images_app)
+    app.mount(f"/{base_url}/audio/api/v1", audio_app)
+    app.mount(f"/{base_url}/retrieval/api/v1", retrieval_app)
+    app.mount(f"/{base_url}/api/v1", webui_app)
+
+# Mount frontend
 if os.path.exists(FRONTEND_BUILD_DIR):
     mimetypes.add_type("text/javascript", ".js")
-    app.mount(
-        "/",
-        SPAStaticFiles(directory=FRONTEND_BUILD_DIR, html=True),
-        name="spa-static-files",
-    )
+    app.mount(f"/{base_url}" if base_url else "/",
+             SPAStaticFiles(directory=FRONTEND_BUILD_DIR, html=True),
+             name="spa-static-files")
 else:
     log.warning(
         f"Frontend build directory not found at '{FRONTEND_BUILD_DIR}'. Serving API only."
