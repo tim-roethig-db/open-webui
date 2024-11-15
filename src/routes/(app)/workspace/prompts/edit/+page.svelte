@@ -21,7 +21,7 @@
 
 		if (prompt) {
 			await prompts.set(await getPrompts(localStorage.token));
-			await goto('/workspace/prompts');
+			await goto(`${base}/workspace/prompts`);
 		}
 	};
 
@@ -37,10 +37,10 @@
 					content: _prompt.content
 				};
 			} else {
-				goto('/workspace/prompts');
+				goto(`${base}/workspace/prompts`);
 			}
 		} else {
-			goto('/workspace/prompts');
+			goto(`${base}/workspace/prompts`);
 		}
 	});
 </script>

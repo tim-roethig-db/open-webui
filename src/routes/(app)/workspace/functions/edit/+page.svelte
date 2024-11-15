@@ -60,7 +60,7 @@
 		if (id) {
 			func = await getFunctionById(localStorage.token, id).catch((error) => {
 				toast.error(error);
-				goto('/workspace/functions');
+				goto(`${base}/workspace/functions`);
 				return null;
 			});
 

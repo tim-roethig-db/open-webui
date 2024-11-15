@@ -514,7 +514,7 @@
 		if (res) {
 			knowledge = res;
 		} else {
-			goto('/workspace/knowledge');
+			goto(`${base}/workspace/knowledge`);
 		}
 
 		const dropZone = document.querySelector('body');

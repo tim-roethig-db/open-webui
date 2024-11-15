@@ -4,6 +4,6 @@
 	import { base } from '$app/paths';
 
 	onMount(() => {
-		goto('/workspace/models');
+		goto(`${base}/workspace/models`);
 	});
 </script>

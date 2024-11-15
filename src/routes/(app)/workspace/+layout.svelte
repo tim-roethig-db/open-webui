@@ -69,46 +69,52 @@
 						class="flex gap-1 scrollbar-none overflow-x-auto w-fit text-center text-sm font-medium rounded-full bg-transparent py-1 touch-auto pointer-events-auto"
 					>
 						<a
-							class="min-w-fit rounded-full p-1.5 {$page.url.pathname.includes('/workspace/models')
+							class="min-w-fit rounded-full p-1.5 {$page.url.pathname.includes(
+								`${base}/workspace/models`
+							)
 								? ''
 								: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition"
-							href="/workspace/models">{$i18n.t('Models')}</a
+							href="{base}/workspace/models">{$i18n.t('Models')}</a
 						>
 
 						<a
 							class="min-w-fit rounded-full p-1.5 {$page.url.pathname.includes(
-								'/workspace/knowledge'
+								`${base}/workspace/knowledge`
 							)
 								? ''
 								: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition"
-							href="/workspace/knowledge"
+							href="{base}/workspace/knowledge"
 						>
 							{$i18n.t('Knowledge')}
 						</a>
 
 						<a
-							class="min-w-fit rounded-full p-1.5 {$page.url.pathname.includes('/workspace/prompts')
+							class="min-w-fit rounded-full p-1.5 {$page.url.pathname.includes(
+								`${base}/workspace/prompts`
+							)
 								? ''
 								: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition"
-							href="/workspace/prompts">{$i18n.t('Prompts')}</a
+							href="{base}/workspace/prompts">{$i18n.t('Prompts')}</a
 						>
 
 						<a
-							class="min-w-fit rounded-full p-1.5 {$page.url.pathname.includes('/workspace/tools')
+							class="min-w-fit rounded-full p-1.5 {$page.url.pathname.includes(
+								`${base}/workspace/tools`
+							)
 								? ''
 								: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition"
-							href="/workspace/tools"
+							href="{base}/workspace/tools"
 						>
 							{$i18n.t('Tools')}
 						</a>
 
 						<a
 							class="min-w-fit rounded-full p-1.5 {$page.url.pathname.includes(
-								'/workspace/functions'
+								`${base}/workspace/functions`
 							)
 								? ''
 								: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition"
-							href="/workspace/functions"
+							href="{base}/workspace/functions"
 						>
 							{$i18n.t('Functions')}
 						</a>

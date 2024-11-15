@@ -50,7 +50,7 @@
 			functions.set(await getFunctions(localStorage.token));
 			models.set(await getModels(localStorage.token));
 
-			await goto('/workspace/functions');
+			await goto(`${base}/workspace/functions`);
 		}
 	};
 

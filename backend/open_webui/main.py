@@ -151,9 +151,9 @@ class SPAStaticFiles(StaticFiles):
         try:
             return await super().get_response(path.removeprefix("test123/"), scope)
         except (HTTPException, StarletteHTTPException) as ex:
-            if path!="test123":
-                import pdb
-                pdb.set_trace()
+            #if path!="test123":
+            import pdb
+            pdb.set_trace()
                 
             if ex.status_code == 404:
                 return await super().get_response("index.html", scope)

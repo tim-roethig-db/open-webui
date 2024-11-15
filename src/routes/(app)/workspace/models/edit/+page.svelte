@@ -21,10 +21,10 @@
 		if (_id) {
 			model = $models.find((m) => m.id === _id && m?.owned_by !== 'arena');
 			if (!model) {
-				goto('/workspace/models');
+				goto(`${base}/workspace/models`);
 			}
 		} else {
-			goto('/workspace/models');
+			goto(`${base}/workspace/models`);
 		}
 	});
 
@@ -34,7 +34,7 @@
 		if (res) {
 			await models.set(await getModels(localStorage.token));
 			toast.success($i18n.t('Model updated successfully'));
-			await goto('/workspace/models');
+			await goto(`${base}/workspace/models`);
 		}
 	};
 </script>

@@ -47,7 +47,7 @@
 
 	const cloneHandler = async (prompt) => {
 		sessionStorage.prompt = JSON.stringify(prompt);
-		goto('/workspace/prompts/create');
+		goto(`${base}/workspace/prompts/create`);
 	};
 
 	const exportHandler = async (prompt) => {
@@ -108,7 +108,7 @@
 		<div>
 			<a
 				class=" px-2 py-2 rounded-xl hover:bg-gray-700/10 dark:hover:bg-gray-100/10 dark:text-gray-300 dark:hover:text-white transition font-medium text-sm flex items-center space-x-1"
-				href="/workspace/prompts/create"
+				href={`${base}/workspace/prompts/create`}
 			>
 				<Plus className="size-3.5" />
 			</a>
@@ -122,7 +122,7 @@
 			class=" flex space-x-4 cursor-pointer w-full px-3 py-2 dark:hover:bg-white/5 hover:bg-black/5 rounded-xl"
 		>
 			<div class=" flex flex-1 space-x-4 cursor-pointer w-full">
-				<a href={`/workspace/prompts/edit?command=${encodeURIComponent(prompt.command)}`}>
+				<a href={`${base}/workspace/prompts/edit?command=${encodeURIComponent(prompt.command)}`}>
 					<div class=" flex-1 self-center pl-1.5">
 						<div class=" font-semibold line-clamp-1">{prompt.command}</div>
 						<div class=" text-xs overflow-hidden text-ellipsis line-clamp-1">
@@ -135,7 +135,7 @@
 				<a
 					class="self-center w-fit text-sm px-2 py-2 dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 rounded-xl"
 					type="button"
-					href={`/workspace/prompts/edit?command=${encodeURIComponent(prompt.command)}`}
+					href={`${base}/workspace/prompts/edit?command=${encodeURIComponent(prompt.command)}`}
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
