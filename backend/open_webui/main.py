@@ -147,6 +147,9 @@ log.setLevel(SRC_LOG_LEVELS["MAIN"])
 
 class SPAStaticFiles(StaticFiles):
     async def get_response(self, path: str, scope):
+
+        import pdb
+        pdb.set_trace()
         print(f"{path=}")
         try:
             return await super().get_response(path.removeprefix("test123/"), scope)

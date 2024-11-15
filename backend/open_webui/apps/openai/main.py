@@ -48,6 +48,7 @@ app = FastAPI(
     docs_url="/docs" if ENV == "dev" else None,
     openapi_url="/openapi.json" if ENV == "dev" else None,
     redoc_url=None,
+    root_path="/test123"
 )
 
 
