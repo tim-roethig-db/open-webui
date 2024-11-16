@@ -1,3 +1,4 @@
+import os
 import asyncio
 import hashlib
 import json
@@ -48,6 +49,7 @@ app = FastAPI(
     docs_url="/docs" if ENV == "dev" else None,
     openapi_url="/openapi.json" if ENV == "dev" else None,
     redoc_url=None,
+    root_path=os.environ.get("WEBUI_BASE_PATH", default="")
 )
 
 

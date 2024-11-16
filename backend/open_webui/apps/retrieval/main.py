@@ -127,7 +127,12 @@ from langchain_core.documents import Document
 log = logging.getLogger(__name__)
 log.setLevel(SRC_LOG_LEVELS["RAG"])
 
-app = FastAPI(docs_url="/docs" if ENV == "dev" else None, openapi_url="/openapi.json" if ENV == "dev" else None, redoc_url=None)
+app = FastAPI(
+    docs_url="/docs" if ENV == "dev" else None,
+    openapi_url="/openapi.json" if ENV == "dev" else None,
+    redoc_url=None,
+    root_path=os.environ.get("WEBUI_BASE_PATH", default="")
+)
 
 app.state.config = AppConfig()
 
