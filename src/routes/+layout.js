@@ -1,3 +1,15 @@
+import { BASE_URL } from '$env/static/public';
+
+// Add base path configuration
+export const config = {
+    kit: {
+        paths: {
+            base: BASE_URL || ''
+        }
+    }
+};
+
+
 // if you want to generate a static html file
 // for your page.
 // Documentation: https://kit.svelte.dev/docs/page-options#prerender
