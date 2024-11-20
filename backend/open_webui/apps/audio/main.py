@@ -48,7 +48,12 @@ MAX_FILE_SIZE = MAX_FILE_SIZE_MB * 1024 * 1024  # Convert MB to bytes
 log = logging.getLogger(__name__)
 log.setLevel(SRC_LOG_LEVELS["AUDIO"])
 
-app = FastAPI(docs_url="/docs" if ENV == "dev" else None, openapi_url="/openapi.json" if ENV == "dev" else None, redoc_url=None)
+app = FastAPI(
+    docs_url="/docs" if ENV == "dev" else None, 
+    openapi_url="/openapi.json" if ENV == "dev" else None, 
+    redoc_url=None,
+    root_path="/test123"
+)
 
 app.add_middleware(
     CORSMiddleware,

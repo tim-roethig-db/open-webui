@@ -147,9 +147,17 @@ log.setLevel(SRC_LOG_LEVELS["MAIN"])
 
 class SPAStaticFiles(StaticFiles):
     async def get_response(self, path: str, scope):
+
+        import pdb
+        pdb.set_trace()
+        print(f"{path=}")
         try:
-            return await super().get_response(path, scope)
+            return await super().get_response(path.removeprefix("test123/"), scope)
         except (HTTPException, StarletteHTTPException) as ex:
+            #if path!="test123":
+            import pdb
+            pdb.set_trace()
+                
             if ex.status_code == 404:
                 return await super().get_response("index.html", scope)
             else:
@@ -183,7 +191,11 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    docs_url="/docs" if ENV == "dev" else None, openapi_url="/openapi.json" if ENV == "dev" else None, redoc_url=None, lifespan=lifespan
+    docs_url="/docs" if ENV == "dev" else None,
+    openapi_url="/openapi.json" if ENV == "dev" else None,
+    redoc_url=None,
+    lifespan=lifespan,
+    root_path="/test123"
 )
 
 app.state.config = AppConfig()
@@ -2468,6 +2480,7 @@ app.mount("/cache", StaticFiles(directory=CACHE_DIR), name="cache")
 
 
 if os.path.exists(FRONTEND_BUILD_DIR):
+    print(f"{FRONTEND_BUILD_DIR=}")
     mimetypes.add_type("text/javascript", ".js")
     app.mount(
         "/",

@@ -3,6 +3,7 @@
 	import { knowledge } from '$lib/stores';
 
 	import { getKnowledgeItems } from '$lib/apis/knowledge';
+	import { base } from '$app/paths';
 	import Knowledge from '$lib/components/workspace/Knowledge.svelte';
 
 	onMount(async () => {

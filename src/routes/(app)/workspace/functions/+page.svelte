@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { functions } from '$lib/stores';
+	import { base } from '$app/paths';
 
 	import { getFunctions } from '$lib/apis/functions';
 	import Functions from '$lib/components/workspace/Functions.svelte';

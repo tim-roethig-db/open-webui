@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { tools } from '$lib/stores';
+	import { base } from '$app/paths';
 
 	import { getTools } from '$lib/apis/tools';
 	import Tools from '$lib/components/workspace/Tools.svelte';

@@ -32,6 +32,7 @@
 	import { WEBUI_BASE_URL, WEBUI_HOSTNAME } from '$lib/constants';
 	import i18n, { initI18n, getLanguages } from '$lib/i18n';
 	import { bestMatchingLanguage } from '$lib/utils';
+	import { base } from '$app/paths';
 
 	setContext('i18n', i18n);
 
@@ -142,13 +143,13 @@
 					} else {
 						// Redirect Invalid Session User to /auth Page
 						localStorage.removeItem('token');
-						await goto('/auth');
+						await goto(`${base}/auth`);
 					}
 				} else {
 					// Don't redirect if we're already on the auth page
 					// Needed because we pass in tokens from OAuth logins via URL fragments
-					if ($page.url.pathname !== '/auth') {
-						await goto('/auth');
+					if ($page.url.pathname !== `${base}/auth`) {
+						await goto(`${base}/auth`);
 					}
 				}
 			}

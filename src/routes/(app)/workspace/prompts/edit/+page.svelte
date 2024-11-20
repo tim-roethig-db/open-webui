@@ -3,6 +3,7 @@
 	import { goto } from '$app/navigation';
 	import { prompts } from '$lib/stores';
 	import { onMount, tick, getContext } from 'svelte';
+	import { base } from '$app/paths';
 
 	import { getPrompts, updatePromptByCommand } from '$lib/apis/prompts';
 	import { page } from '$app/stores';
@@ -20,7 +21,7 @@
 
 		if (prompt) {
 			await prompts.set(await getPrompts(localStorage.token));
-			await goto('/workspace/prompts');
+			await goto(`${base}/workspace/prompts`);
 		}
 	};
 
@@ -36,10 +37,10 @@
 					content: _prompt.content
 				};
 			} else {
-				goto('/workspace/prompts');
+				goto(`${base}/workspace/prompts`);
 			}
 		} else {
-			goto('/workspace/prompts');
+			goto(`${base}/workspace/prompts`);
 		}
 	});
 </script>

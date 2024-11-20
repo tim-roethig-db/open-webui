@@ -9,6 +9,7 @@
 	import { getModels } from '$lib/apis';
 	import { compareVersion, extractFrontmatter } from '$lib/utils';
 	import { WEBUI_VERSION } from '$lib/constants';
+	import { base } from '$app/paths';
 
 	const i18n = getContext('i18n');
 
@@ -49,7 +50,7 @@
 			functions.set(await getFunctions(localStorage.token));
 			models.set(await getModels(localStorage.token));
 
-			await goto('/workspace/functions');
+			await goto(`${base}/workspace/functions`);
 		}
 	};
 

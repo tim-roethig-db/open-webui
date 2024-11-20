@@ -3,6 +3,8 @@
 	import { prompts } from '$lib/stores';
 
 	import { getPrompts } from '$lib/apis/prompts';
+
+	import { base } from '$app/paths';
 	import Prompts from '$lib/components/workspace/Prompts.svelte';
 
 	onMount(async () => {
