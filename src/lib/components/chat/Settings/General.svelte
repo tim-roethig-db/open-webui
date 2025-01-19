@@ -256,39 +256,8 @@
 			</div>
 
 			{#if showAdvanced}
-				<AdvancedParams admin={$user?.role === 'admin'} bind:params />
+				<AdvancedParams admin={$user?.role === 'admin'} bind:params bind:keepAlive />
 				<hr class=" dark:border-gray-850" />
-
-				<div class=" py-1 w-full justify-between">
-					<div class="flex w-full justify-between">
-						<div class=" self-center text-xs font-medium">{$i18n.t('Keep Alive')}</div>
-
-						<button
-							class="p-1 px-3 text-xs flex rounded transition"
-							type="button"
-							on:click={() => {
-								keepAlive = keepAlive === null ? '5m' : null;
-							}}
-						>
-							{#if keepAlive === null}
-								<span class="ml-2 self-center"> {$i18n.t('Default')} </span>
-							{:else}
-								<span class="ml-2 self-center"> {$i18n.t('Custom')} </span>
-							{/if}
-						</button>
-					</div>
-
-					{#if keepAlive !== null}
-						<div class="flex mt-1 space-x-2">
-							<input
-								class="w-full rounded-lg py-2 px-4 text-sm dark:text-gray-300 dark:bg-gray-850 outline-none"
-								type="text"
-								placeholder={$i18n.t("e.g. '30s','10m'. Valid time units are 's', 'm', 'h'.")}
-								bind:value={keepAlive}
-							/>
-						</div>
-					{/if}
-				</div>
 
 				<div>
 					<div class=" py-1 flex w-full justify-between">
